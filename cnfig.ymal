@@ -1,0 +1,36 @@
+---
+- hosts: servers
+
+  tasks:
+  - name: Update APT package maneger repositories cache
+    become: true 
+    apt:
+      update_cache: yes
+ 
+  - name: Install Python3
+    hosts: slave
+    become: true
+    tasks:
+      - name: Install Python3
+        package:
+          name: python
+          state: present
+
+  - name: Install pip3
+    hosts: slave
+    become: true
+    tasks:
+      - name: Install pip3
+        package:
+          name: pip3
+          state: present
+
+  - name: Install Java open-jdk
+    hosts: all
+    become: yes
+    tasks:
+      -name: Install Java open-jdk
+       package:
+         name: python
+         state: present
+
